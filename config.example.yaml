@@ -1,0 +1,19 @@
+gcp:
+  project_id: "PLACEHOLDER VALUE FOR GITHUB"
+  dataset_id: "finguard"
+  location: "US"   # or "northamerica-northeast1" etc.
+
+tables:
+  raw_transactions: "raw_transactions"
+  validated_transactions: "validated_transactions"
+  transaction_exceptions: "transaction_exceptions"
+  daily_validation_summary: "daily_validation_summary"
+  vendor_master: "vendor_master"
+  cost_center_master: "cost_center_master"
+
+settings:
+  approval_threshold: 5000
+  default_currency: "CAD"
+  output_dir: "data"
+  synthetic_rows_per_day: 250
+  synthetic_error_rate: 0.10   # 10% intentionally bad
