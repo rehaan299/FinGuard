@@ -1,0 +1,16 @@
+# local config
+config.yaml
+.env
+
+# generated data
+data/*.csv
+
+# python stuff
+__pycache__/
+*.pyc
+.venv/
+venv/
+.envrc
+
+# OS
+.DS_Store
