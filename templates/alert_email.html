@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <body style="font-family: Arial, sans-serif;">
+    <h2>FinGuard Alert — Exceptions detected for {{RUN_DATE}}</h2>
+
+    <p>Hi,</p>
+
+    <p>
+      FinGuard ran validation checks for <b>{{RUN_DATE}}</b> and found exceptions.
+    </p>
+
+    <h3>Summary</h3>
+    <ul>
+      <li>Total transactions: <b>{{TOTAL}}</b></li>
+      <li>Flagged transactions: <b>{{FLAGGED}}</b> ({{FLAGGED_PERCENT}}%)</li>
+      <li>High severity: <b>{{HIGH}}</b></li>
+      <li>Medium severity: <b>{{MEDIUM}}</b></li>
+      <li>Low severity: <b>{{LOW}}</b></li>
+    </ul>
+
+    <h3>Top issues (sample)</h3>
+    <pre style="background:#f4f4f4;padding:12px;border-radius:6px;">{{TOP_ISSUES}}</pre>
+
+    <h3>Next steps</h3>
+    <ol>
+      <li>Review the <code>transaction_exceptions</code> table in BigQuery</li>
+      <li>Prioritize HIGH severity items first</li>
+      <li>Confirm duplicates / approvals / vendor master issues</li>
+    </ol>
+
+    <p style="color:#666;">— FinGuard</p>
+  </body>
+</html>
