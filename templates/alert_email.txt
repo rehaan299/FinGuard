@@ -1,0 +1,22 @@
+Subject: FinGuard Alert — Exceptions detected for {{RUN_DATE}}
+
+Hi,
+
+FinGuard ran validation checks for {{RUN_DATE}} and found exceptions.
+
+Summary:
+- Total transactions: {{TOTAL}}
+- Flagged transactions: {{FLAGGED}} ({{FLAGGED_PERCENT}}%)
+- High severity: {{HIGH}}
+- Medium severity: {{MEDIUM}}
+- Low severity: {{LOW}}
+
+Top issues (sample):
+{{TOP_ISSUES}}
+
+Next steps:
+1) Review transaction_exceptions in BigQuery
+2) Prioritize HIGH severity items first
+3) Confirm duplicates / approvals / vendor master entries
+
+— FinGuard
