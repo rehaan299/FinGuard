@@ -1,0 +1,41 @@
+name: FinGuard Daily Run
+
+on:
+  schedule:
+    - cron: "0 10 * * *" # daily 10:00 UTC (adjust)
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # You must add a GCP service account key secret for real runs
+      # Example secret: GCP_SA_KEY (JSON)
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: "${{ secrets.GCP_SA_KEY }}"
+
+      - name: Set run date
+        run: echo "RUN_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: Generate synthetic data
+        run: python src/generate_synthetic_data.py --date $RUN_DATE
+
+      - name: Ingest into BigQuery
+        run: python src/ingest_to_bigquery.py --date $RUN_DATE
+
+      - name: Run validations
+        run: python src/run_validations.py --date $RUN_DATE
